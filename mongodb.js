@@ -47,6 +47,8 @@ const customCommandsCollection = db.collection('customCommands');
 const birthdayCollection = db.collection('birthday'); 
 const applicationCollection = db.collection('applications'); 
 const serverLevelingLogsCollection = db.collection('serverLevelingLogs');
+const likecollection = db.collection('fflikes');
+const likeuserconfig = db.collection('fflikeslimiter');
 const commandLogsCollection = db.collection('commandLogs');
 const reportsCollection = db.collection('reports'); 
 const stickyMessageCollection = db.collection('stickymessages');
@@ -110,4 +112,6 @@ module.exports = {
     autoplayCollection,
     embedCollection,
     countingCollection,
+    likecollection,
+    likeuserconfig,
 };
