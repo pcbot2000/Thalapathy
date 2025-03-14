@@ -17,7 +17,7 @@ module.exports = {
         }
 
         if (args.length < 2) {
-            return message.reply('❌ Usage: `!like <country> <UID>`\nExample: `!like ind 89327583`');
+            return message.reply('❌ Usage: `!like <country> <UID>`\nExample: `!like bd 2349899077`');
         }
 
         const [country, uid] = args;
