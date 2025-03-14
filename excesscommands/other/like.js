@@ -57,7 +57,7 @@ module.exports = {
 
                 const embed = new EmbedBuilder()
                     .setTitle(`🔥 Free Fire Like Given!`)
-                    .setDescription(`✅ **Player:** ${PlayerNickname} (Level ${PlayerLevel})\n👍 **Likes Before:** ${LikesbeforeCommand}\n🔥 **Likes After:** ${LikesafterCommand}\n🔹 **Likes Given:** ${LikesGivenByAPI}\n📊 **Remaining Requests:** ${KeyRemainingRequests}`)
+                    .setDescription(`👤 **Player:** ${PlayerNickname} (Level ${PlayerLevel})\n👍 **Likes Before:** ${LikesbeforeCommand}\n🔥 **Likes After:** ${LikesafterCommand}\n💎 **Likes Given:** ${LikesGivenByAPI}\n📊 **Remaining Requests:** ${KeyRemainingRequests}`)
                     .setColor('#00ff00')
                     .setTimestamp();
 
