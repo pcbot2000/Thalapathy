@@ -3,7 +3,7 @@ const axios = require('axios');
 const { likecollection, likeuserconfig } = require('../../mongodb'); 
 
 const FREEFIRE_API_KEY = process.env.FREEFIRE_API_KEY;
-const allowedChannels = ['1311789875972014090', '1349772318355751035'];
+const allowedChannels = ['1311789875972014090', '987654321098765432'];
 
 const DEFAULT_LIMIT = 1;
 
@@ -17,7 +17,7 @@ module.exports = {
         }
 
         if (args.length < 2) {
-            return message.reply('❌ Usage: `!like <country> <UID>`\nExample: `!like bd 2349899077`');
+            return message.reply('❌ Usage: `!like <country> <UID>`\nExample: `!like ind 89327583`');
         }
 
         const [country, uid] = args;
@@ -25,7 +25,6 @@ module.exports = {
         const apiUrl = `https://likes.api.freefireofficial.com/api/${country}/${uid}?key=${FREEFIRE_API_KEY}`;
 
         try {
-           
             const userConfig = await likeuserconfig.findOne({ userId });
             let userLimit = userConfig?.limit ?? DEFAULT_LIMIT; 
 
@@ -36,17 +35,14 @@ module.exports = {
             const currentTime = Date.now();
             const oneDay = 24 * 60 * 60 * 1000;
 
-          
             if (likesUsed >= userLimit && currentTime - lastUsed < oneDay) {
                 return message.reply(`❌ You have reached your daily like limit (${userLimit}). Try again in 24 hours.`);
             }
 
-          
             const response = await axios.get(apiUrl);
             const data = response.data;
 
             if (data.status === 1) {
-             
                 await likecollection.updateOne(
                     { userId },
                     { $set: { lastUsed: currentTime }, $inc: { likesUsed: 1 } },
@@ -56,20 +52,31 @@ module.exports = {
                 const { PlayerNickname, PlayerLevel, LikesbeforeCommand, LikesafterCommand, LikesGivenByAPI, KeyRemainingRequests } = data.response;
 
                 const embed = new EmbedBuilder()
-                    .setTitle(`🔥 Free Fire Like Given!`)
-                    .setDescription(`👤 **Player:** ${PlayerNickname} (Level ${PlayerLevel})\n👍 **Likes Before:** ${LikesbeforeCommand}\n🔥 **Likes After:** ${LikesafterCommand}\n💎 **Likes Given:** ${LikesGivenByAPI}\n📊 **Remaining Requests:** ${KeyRemainingRequests}`)
+                    .setTitle(`🎉 Likes Successfully Sent! 🎉!`)
+                    .setDescription(
+                        `👤 **Player:** ${PlayerNickname}\n` +
+                        `🎮 **Level:** ${PlayerLevel}\n` +  
+                        `👍 **Likes Before:** ${LikesbeforeCommand}\n` +
+                        `🔥 **Likes After:** ${LikesafterCommand}\n` +
+                        `💎 **Likes Given:** ${LikesGivenByAPI}\n` +
+                        `📊 **Remaining Requests:** ${KeyRemainingRequests}`
+                    )
                     .setColor('#00ff00')
                     .setTimestamp();
 
                 return message.reply({ embeds: [embed] });
 
             } else if (data.status === 3) {
-            
-                const { message: errorMsg, expires_at } = data;
+                const { message: errorMsg } = data;
+
+                // Replace "Sri Lankan time" with "Bangladesh time (2:00 AM)"
+                const modifiedMessage = errorMsg
+                    .replace(/Sri Lankan time/gi, 'Bangladesh time')
+                    .replace(/1:30 AM/gi, '2:00 AM');
 
                 const embed = new EmbedBuilder()
                     .setTitle('⚠️ Like Already Given Today')
-                    .setDescription(`❌ ${errorMsg}\n🕐 **Next Available:** ${expires_at}`)
+                    .setDescription(`❌ ${modifiedMessage}`)
                     .setColor('#ff0000')
                     .setTimestamp();
 
@@ -81,7 +88,7 @@ module.exports = {
 
         } catch (error) {
             console.error('API Error:', error.response?.data || error.message);
-            return message.reply('❌ Failed to fetch data. Please check the UID, country code, or try again later.');
+            return message.reply(`UID ${uid} already used for today. Please wait until 2.00 AM Bangladesh time for the next request.`);
         }
     },
 };
