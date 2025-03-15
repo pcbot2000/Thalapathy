@@ -3,7 +3,7 @@ const axios = require('axios');
 const { likecollection, likeuserconfig } = require('../../mongodb'); 
 
 const FREEFIRE_API_KEY = process.env.FREEFIRE_API_KEY;
-const allowedChannels = ['1311789875972014090', '987654321098765432'];
+const allowedChannels = ['1311789875972014090', '1349772318355751035'];
 
 const DEFAULT_LIMIT = 1;
 
