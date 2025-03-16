@@ -52,7 +52,7 @@ module.exports = {
                 const { PlayerNickname, PlayerLevel, LikesbeforeCommand, LikesafterCommand, LikesGivenByAPI, KeyRemainingRequests } = data.response;
 
                 const embed = new EmbedBuilder()
-                    .setTitle(`🎉 Likes Successfully Sent! 🎉!`)
+                    .setTitle(`🎉 Likes Successfully Sent! 🎉`)
                     .setDescription(
                         `👤 **Player:** ${PlayerNickname}\n` +
                         `🎮 **Level:** ${PlayerLevel}\n` +  
@@ -60,6 +60,7 @@ module.exports = {
                         `🔥 **Likes After:** ${LikesafterCommand}\n` +
                         `💎 **Likes Given:** ${LikesGivenByAPI}\n` +
                         `📊 **Remaining Requests:** ${KeyRemainingRequests}`
+                        .setTitle(`🎀Please come back after 24 hours to claim your free like again✌️`)
                     )
                     .setColor('#00ff00')
                     .setTimestamp();
