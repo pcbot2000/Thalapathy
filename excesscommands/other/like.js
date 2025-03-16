@@ -52,7 +52,7 @@ module.exports = {
                 const { PlayerNickname, PlayerLevel, LikesbeforeCommand, LikesafterCommand, LikesGivenByAPI, KeyRemainingRequests } = data.response;
 
                 const embed = new EmbedBuilder()
-                    .setTitle(`Booyah!🎉 ${PlayerNickname} Likes Successfully Sent! 🎉`)
+                    .setTitle(`Booyah!🎉 Likes Successfully Sent! 🎉`)
                     .setDescription(
                         `👤 **Player:** ${PlayerNickname}\n` +
                         `🎮 **Level:** ${PlayerLevel}\n` +  
@@ -89,7 +89,7 @@ module.exports = {
 
         } catch (error) {
             console.error('API Error:', error.response?.data || error.message);
-            return message.reply(`Oops! ${PlayerNickname} System detected you've claimed free likes one time today. Come back tomorrow after 2.00 AM Bangladesh Time to claim free likes again..`);
+            return message.reply(`UID ${uid} already used for today. Please wait until 2.00 AM Bangladesh time for the next request.`);
         }
     },
 };
