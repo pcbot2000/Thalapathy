@@ -36,7 +36,7 @@ module.exports = {
             const oneDay = 24 * 60 * 60 * 1000;
 
             if (likesUsed >= userLimit && currentTime - lastUsed < oneDay) {
-                return message.reply(`Oops! ❌ You have reached your daily like limit (${userLimit}). Try again in 24 hours.`);
+                return message.reply(`❌ You have reached your daily like limit (${userLimit}). Try again in 24 hours.`);
             }
 
             const response = await axios.get(apiUrl);
@@ -52,7 +52,7 @@ module.exports = {
                 const { PlayerNickname, PlayerLevel, LikesbeforeCommand, LikesafterCommand, LikesGivenByAPI, KeyRemainingRequests } = data.response;
 
                 const embed = new EmbedBuilder()
-                    .setTitle(`Booyah!🎉 Likes Successfully Sent! 🎉`)
+                    .setTitle(`🎉 Likes Successfully Sent! 🎉!`)
                     .setDescription(
                         `👤 **Player:** ${PlayerNickname}\n` +
                         `🎮 **Level:** ${PlayerLevel}\n` +  
@@ -60,7 +60,6 @@ module.exports = {
                         `🔥 **Likes After:** ${LikesafterCommand}\n` +
                         `💎 **Likes Given:** ${LikesGivenByAPI}\n` +
                         `📊 **Remaining Requests:** ${KeyRemainingRequests}`
-                        .setTitle(`🎗️Please come back after 24 hours to claim your free like again✌️`)
                     )
                     .setColor('#00ff00')
                     .setTimestamp();
