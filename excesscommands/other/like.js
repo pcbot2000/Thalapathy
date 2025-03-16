@@ -36,7 +36,7 @@ module.exports = {
             const oneDay = 24 * 60 * 60 * 1000;
 
             if (likesUsed >= userLimit && currentTime - lastUsed < oneDay) {
-                return message.reply(`Oops! ${PlayerNickname} you've already received 100 likes in last 24 hours (${userLimit}). Please try again later..`);
+                return message.reply(`Oops! ❌ You have reached your daily like limit (${userLimit}). Try again in 24 hours.`);
             }
 
             const response = await axios.get(apiUrl);
