@@ -36,7 +36,7 @@ module.exports = {
             const oneDay = 24 * 60 * 60 * 1000;
 
             if (likesUsed >= userLimit && currentTime - lastUsed < oneDay) {
-                return message.reply(`❌ You have reached your daily like limit (${userLimit}). Try again in 24 hours.`);
+                return message.reply(`Oops! ${PlayerNickname} you've already received 100 likes in last 24 hours (${userLimit}). Please try again later..`);
             }
 
             const response = await axios.get(apiUrl);
@@ -52,7 +52,7 @@ module.exports = {
                 const { PlayerNickname, PlayerLevel, LikesbeforeCommand, LikesafterCommand, LikesGivenByAPI, KeyRemainingRequests } = data.response;
 
                 const embed = new EmbedBuilder()
-                    .setTitle(`🎉 Likes Successfully Sent! 🎉`)
+                    .setTitle(`Booyah!🎉 ${PlayerNickname} Likes Successfully Sent! 🎉`)
                     .setDescription(
                         `👤 **Player:** ${PlayerNickname}\n` +
                         `🎮 **Level:** ${PlayerLevel}\n` +  
@@ -60,7 +60,7 @@ module.exports = {
                         `🔥 **Likes After:** ${LikesafterCommand}\n` +
                         `💎 **Likes Given:** ${LikesGivenByAPI}\n` +
                         `📊 **Remaining Requests:** ${KeyRemainingRequests}`
-                        .setTitle(`🎀Please come back after 24 hours to claim your free like again✌️`)
+                        .setTitle(`🎗️Please come back after 24 hours to claim your free like again✌️`)
                     )
                     .setColor('#00ff00')
                     .setTimestamp();
@@ -89,7 +89,7 @@ module.exports = {
 
         } catch (error) {
             console.error('API Error:', error.response?.data || error.message);
-            return message.reply(`UID ${uid} already used for today. Please wait until 2.00 AM Bangladesh time for the next request.`);
+            return message.reply(`Oops! ${PlayerNickname} System detected you've claimed free likes one time today. Come back tomorrow after 2.00 AM Bangladesh Time to claim free likes again..`);
         }
     },
 };
