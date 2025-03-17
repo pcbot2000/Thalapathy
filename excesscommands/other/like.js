@@ -37,7 +37,7 @@ module.exports = {
 
             if (!allowedUsers.includes(userId)) { 
                 if (likesUsed >= userLimit && currentTime - lastUsed < oneDay) {
-                    return message.reply(`Oops!😌 <@${userId}> You have reached your daily like limit (${userLimit}). Try again in 24 hours.`);
+                    return message.reply(`Oops!😌 <@${userId}> You have reached your daily like limit (${userLimit}). Try again in 24 hours.😓`);
                 }
             }
             
@@ -91,7 +91,7 @@ module.exports = {
 
         } catch (error) {
             console.error('API Error:', error.response?.data || error.message);
-            return message.reply(`Oops! <@${userId}> System detected you've received 100 likes in last 24 hours. Please try again later.`);
+            return message.reply(`Oops!😌 <@${userId}> System detected you've received 100 likes in last 24 hours. Please try again later.😓`);
         }
     },
 };
