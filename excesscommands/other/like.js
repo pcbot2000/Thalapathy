@@ -55,13 +55,13 @@ module.exports = {
                 const { PlayerNickname, PlayerLevel, LikesbeforeCommand, LikesafterCommand, LikesGivenByAPI, KeyRemainingRequests } = data.response;
 
                 const embed = new EmbedBuilder()
-                    .setTitle(`Booyah!🎉 <@${userId}> You have successfully claimed ${LikesGivenByAPI} likes!!🥳`)
+                    .setTitle(`Booyah!🎉 ${PlayerNickname} You have successfully claimed ${LikesGivenByAPI} likes!!🥳`)
                     .setDescription(
                         `👤 **Player:** ${PlayerNickname}\n` +
                         `🎮 **Level:** ${PlayerLevel}\n` +  
                         `👍 **Likes Before:** ${LikesbeforeCommand}\n` +
                         `🔥 **Likes After:** ${LikesafterCommand}\n` +
-                        `💎 **Likes Given:** ${LikesGivenByAPI}\n` +`🎗️ **Please come back after 24 hours to claim your free like again**\n`+
+                        `💎 **Likes Given:** ${LikesGivenByAPI}\n` +`🎗️ **Please come back after 24 hours to claim your free like again✌️**\n`+
                         `📊 **Remaining Requests:** ${KeyRemainingRequests}`
                     )
                     .setColor('#00ff00')
