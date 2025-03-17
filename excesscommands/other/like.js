@@ -55,7 +55,7 @@ module.exports = {
                 const { PlayerNickname, PlayerLevel, LikesbeforeCommand, LikesafterCommand, LikesGivenByAPI, KeyRemainingRequests } = data.response;
 
                 const embed = new EmbedBuilder()
-                    .setTitle(`Booyah!🎉 ${PlayerNickname} You have successfully claimed ${LikesGivenByAPI} likes!!🥳`)
+                    .setTitle(`🎉Booyah! 🎊 ${PlayerNickname} You have successfully claimed ${LikesGivenByAPI} likes!🥳`)
                     .setDescription(
                         `👤 **Player:** ${PlayerNickname}\n` +
                         `🎮 **Level:** ${PlayerLevel}\n` +  
