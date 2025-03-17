@@ -37,7 +37,7 @@ module.exports = {
 
             if (!allowedUsers.includes(userId)) { 
                 if (likesUsed >= userLimit && currentTime - lastUsed < oneDay) {
-                    return message.reply(`Oops!😌 <@${userId}> You have reached your daily like limit (${userLimit}). Try again in 24 hours.😓`);
+                    return message.reply(`Oops!😌 <@${userId}> You have reached your daily like request limit (${userLimit}). Please wait 24 hours from the last claim.😓`);
                 }
             }
             
