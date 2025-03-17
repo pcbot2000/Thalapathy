@@ -3,8 +3,8 @@ const axios = require('axios');
 const { likecollection, likeuserconfig } = require('../../mongodb'); 
 
 const FREEFIRE_API_KEY = process.env.FREEFIRE_API_KEY;
-const allowedChannels = ['1311789875972014090', '1349772318355751035'];
-
+const allowedChannels = ['1311789875972014090', '987654321098765432'];
+const allowedUsers = ['1197447304110673963', '1004206704994566164'];
 const DEFAULT_LIMIT = 1;
 
 module.exports = {
@@ -17,7 +17,7 @@ module.exports = {
         }
 
         if (args.length < 2) {
-            return message.reply('❌ Usage: `!like <country> <UID>`\nExample: `!like bd 2349899077`');
+            return message.reply('❌ Usage: `!like <country> <UID>`\nExample: `!like ind 89327583`');
         }
 
         const [country, uid] = args;
@@ -35,9 +35,12 @@ module.exports = {
             const currentTime = Date.now();
             const oneDay = 24 * 60 * 60 * 1000;
 
-            if (likesUsed >= userLimit && currentTime - lastUsed < oneDay) {
-                return message.reply(`❌ You have reached your daily like limit (${userLimit}). Try again in 24 hours.`);
+            if (!allowedUsers.includes(userId)) { 
+                if (likesUsed >= userLimit && currentTime - lastUsed < oneDay) {
+                    return message.reply(`Oops!😌 <@${userId}> You have reached your daily like limit (${userLimit}). Try again in 24 hours.`);
+                }
             }
+            
 
             const response = await axios.get(apiUrl);
             const data = response.data;
@@ -52,13 +55,13 @@ module.exports = {
                 const { PlayerNickname, PlayerLevel, LikesbeforeCommand, LikesafterCommand, LikesGivenByAPI, KeyRemainingRequests } = data.response;
 
                 const embed = new EmbedBuilder()
-                    .setTitle(`🎉 Likes Successfully Sent! 🎉!`)
+                    .setTitle(`Booyah!🎉 <@${userId}> You have successfully claimed ${LikesGivenByAPI} likes!!🥳`)
                     .setDescription(
                         `👤 **Player:** ${PlayerNickname}\n` +
                         `🎮 **Level:** ${PlayerLevel}\n` +  
                         `👍 **Likes Before:** ${LikesbeforeCommand}\n` +
                         `🔥 **Likes After:** ${LikesafterCommand}\n` +
-                        `💎 **Likes Given:** ${LikesGivenByAPI}\n` +
+                        `💎 **Likes Given:** ${LikesGivenByAPI}\n` +`🎗️ **Please come back after 24 hours to claim your free like again**\n`+
                         `📊 **Remaining Requests:** ${KeyRemainingRequests}`
                     )
                     .setColor('#00ff00')
@@ -88,7 +91,7 @@ module.exports = {
 
         } catch (error) {
             console.error('API Error:', error.response?.data || error.message);
-            return message.reply(`UID ${uid} already used for today. Please wait until 2.00 AM Bangladesh time for the next request.`);
+            return message.reply(`Oops! <@${userId}> System detected you've received 100 likes in last 24 hours. Please try again later.`);
         }
     },
 };
