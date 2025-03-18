@@ -91,7 +91,7 @@ module.exports = {
 
         } catch (error) {
             console.error('API Error:', error.response?.data || error.message);
-            return message.reply(`Oops!😌 <@${userId}> System detected you've received 100 likes in last 24 hours. Please try again later.😓`);
+            return message.reply(`Oops!😌 <@${userId}> System detected your UID ${uid} already received 100 likes in last 24 hours. Please try again later.😓`);
         }
     },
 };
